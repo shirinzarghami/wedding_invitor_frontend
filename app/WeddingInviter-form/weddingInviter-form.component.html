@@ -4,18 +4,43 @@
     <form (ngSubmit)="onSubmit()" #weddingInviterForm="ngForm">
       <div class="form-group">
         <label class="question">Will you join?</label>
-          <input type="radio" value=true name="participate" [(ngModel)]="model.participate"> yes
-          <input type="radio" value=false  name="participate" [(ngModel)]="model.participate"> No
-        <!-- <label for="name">Name</label>
-        <input type="text" class="form-control" id="name"
-               required
-               [(ngModel)]="model.participate" name="name"
-               #name="ngModel">
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Name is required
-        </div> -->
+          <div class="form-check">
+            <input type="radio" [value]='true' name="participate" [(ngModel)]="model.participate" id="participate"> 
+            <label for="participate">yes</label>
+          </div>
+          <div class="form-check">
+            <input type="radio" [value]='false'  name="participate" [(ngModel)]="model.participate" id="notParticipate">
+            <label for="notParticipate">No</label>
+          </div>
       </div>
+      <div *ngIf="model.participate">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="numberOfAdults">Number of adult</label>
+            <input type="number" class="form-control" id="numberOfAdults"
+                  required
+                  [(ngModel)]="model.numberOfAdults" name="numberOfAdults"
+                  #numberOfAdults="ngModel">
+            <div [hidden]="numberOfAdults.valid || numberOfAdults.pristine"
+                class="alert alert-danger">
+                Number Of adults is required
+            </div>
+          </div>
+          <div class="col-md-6">
+              <label for="numberOfKids">Number of kids</label>
+              <input type="number" class="form-control" id="numberOfKids"
+                    required
+                    [(ngModel)]="model.numberOfKids" name="numberOfKids"
+                    #numberOfKids="ngModel">
+              <div [hidden]="numberOfKids.valid || numberOfkids.pristine"
+                  class="alert alert-danger">
+                  Number Of kids is required
+              </div>
+            </div>
+        </div>
+      </div>
+     
+   
 
 
       <button type="submit" class="btn btn-success" [disabled]="!weddingInviterForm.form.valid">Submit</button>
