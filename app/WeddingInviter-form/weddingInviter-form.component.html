@@ -14,43 +14,149 @@
           </div>
       </div>
       <div *ngIf="model.participate">
-        <div class="row">
-          <div class="col-md-6">
-            <label for="numberOfAdults">Number of adult</label>
-            <input type="number" class="form-control" id="numberOfAdults"
-                  required
-                  [(ngModel)]="model.numberOfAdults" name="numberOfAdults"
-                  #numberOfAdults="ngModel">
-            <div [hidden]="numberOfAdults.valid || numberOfAdults.pristine"
-                class="alert alert-danger">
-                Number Of adults is required
-            </div>
-          </div>
-          <div class="col-md-6">
-              <label for="numberOfKids">Number of kids</label>
-              <input type="number" class="form-control" id="numberOfKids"
-                    required
-                    [(ngModel)]="model.numberOfKids" name="numberOfKids"
-                    #numberOfKids="ngModel">
-              <div [hidden]="numberOfKids.valid || numberOfkids.pristine"
-                  class="alert alert-danger">
-                  Number Of kids is required
+        <fieldset>
+          <legend>Contact info</legend>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name"
+                required
+                [(ngModel)]="model.name" name="name"
+                #name="ngModel">
+              <div [hidden]="name.valid || name.pristine"
+              class="alert alert-danger">
+                Name is required
               </div>
             </div>
-        </div>
+            <div class="form-group col-md-6">
+              <label for="phoneNumber">Phone number</label>
+              <input type="text" class="form-control" id="phoneNumber"
+                [(ngModel)]="model.phoneNumber" name="phoneNumber"
+                #phoneNumber="ngModel">
+              <div [hidden]="phoneNumber.valid || phoneNumber.pristine"
+                class="alert alert-danger">
+                Phone number Of adults is required
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Number of guests</legend>
+          <div class="row">
+                <div class="col-md-6">
+                  <label for="numberOfAdults">Number of adult</label>
+                  <input type="number" class="form-control" id="numberOfAdults"
+                        required
+                        [(ngModel)]="model.numberOfAdults" name="numberOfAdults"
+                        #numberOfAdults="ngModel">
+                  <div [hidden]="numberOfAdults.valid || numberOfAdults.pristine"
+                      class="alert alert-danger">
+                      Number Of adults is required
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="numberOfKids">Number of kids</label>
+                    <input type="number" class="form-control" id="numberOfKids"
+                          required
+                          [(ngModel)]="model.numberOfKids" name="numberOfKids"
+                          #numberOfKids="ngModel">
+                    <div [hidden]="numberOfKids.valid || numberOfkids.pristine"
+                        class="alert alert-danger">
+                        Number Of kids is required
+                    </div>
+                  </div>
+              </div>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Address:</legend>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity"
+              required 
+              [(ngModel)]="model.addressCity" name="addressCity"
+              #addressCity="ngModel">
+              <div [hidden]="addressCity.valid || addressCity.pristine"
+                class="alert alert-danger">
+                city is requierd
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputStreet">Street</label>
+              <input type="text" class="form-control" id="inputStreet"
+              required 
+              [(ngModel)]="model.addressStreet" name="addressStreet"
+              #addressStreet="ngModel">
+              <div [hidden]="addressStreet.valid || addressStreet.pristine"
+                class="alert alert-danger">
+                Street is requierd
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="inputNumber">number</label>
+              <input type="text" class="form-control" id="inputNumber"
+              required 
+              [(ngModel)]="model.addressNumber" name="addressNumber"
+              #addressNumber="ngModel">
+              <div [hidden]="addressNumber.valid || addressNumber.pristine"
+                class="alert alert-danger">
+                Number is requierd
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPostalcode">Postalcode</label>
+              <input type="text" class="form-control" id="inputPostalCode"
+              required 
+              [(ngModel)]="model.addressPostalCode" name="addressPostalCode"
+              #addressPostalCode="ngModel">
+              <div [hidden]="addressPostalCode.valid || addressPostalCode.pristine"
+                class="alert alert-danger">
+                Postalcode is requierd
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Program:</legend>
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Program</th>
+                  <th scope="col">We will Participate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+        </fieldset>
       </div>
      
    
 
 
       <button type="submit" class="btn btn-success" [disabled]="!weddingInviterForm.form.valid">Submit</button>
-
-     <!-- NOT SHOWN IN DOCS -->
-      <div>
-        <hr>
-        Name via form.controls = {{showFormControls(weddingInviterForm)}}
-      </div>
-     <!-- - -->
     </form>
   </div>
 

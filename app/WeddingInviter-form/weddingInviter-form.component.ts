@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class WeddingInviterFormComponent {
   submitted = false;
-  model = new Guest(true,1,0,'','','','','',true,true,true,'');
+  model = new Guest("",true,1,0,'','','','','',true,true,true,'');
   onSubmit() { this.submitted = true; debugger}
 
 
