@@ -1,3 +1,16 @@
 .question {
     margin-right: 100px;
 }
+.participateCheckBox {
+    font-weight: initial;
+}
+.photo {
+    background-size: 100%;
+    background-repeat: initial;
+    height: 204px;
+    background-image: url(https://secure.cdn3.wdpromedia.com/media/dftwh/my-wedding-space/dream-wedding-maker/DreamWeddingmaker-Hero.jpg);
+}
+.remarks {
+    float: left;
+    margin: 10px;
+}

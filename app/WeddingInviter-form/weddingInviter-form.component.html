@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container well well-lg">
   <div [hidden]="submitted">
     <h1>Invitation guests Form</h1>
+    <div class="photo"></div>
     <form (ngSubmit)="onSubmit()" #weddingInviterForm="ngForm">
       <div class="form-group">
         <label class="question">Will you join?</label>
@@ -127,29 +128,52 @@
                   <th scope="col">#</th>
                   <th scope="col">Time</th>
                   <th scope="col">Program</th>
+                  <th scope="col">Location</th>
                   <th scope="col">We will Participate</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>16 PM-17 PM</td>
+                  <td>Dutch ceremony</td>
+                  <td><a href="https://www.google.nl/maps?q=markant+hengelo+trouwen&um=1&ie=UTF-8&sa=X&ved=0ahUKEwic5bnMsNrYAhXC_KQKHW6ED7IQ_AUICygC/">Markant Hengelo</a></td>
+                  <td>
+                      <input type="checkbox" name="participateDutchCeremony" [(ngModel)]="model.participateDutchCeremony" >
+                      <label  class="participateCheckBox" >Participate</label>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
+                  <td>17 PM - 18 PM</td>
+                  <td>Reception + Iranian cermony </td>
+                  <td><a href="https://www.google.nl/maps/place/Van+der+Valk+Hotel+Hengelo/@52.2862338,6.7722163,17z/data=!3m1!4b1!4m5!3m4!1s0x47b80e30c44d8381:0x96702367c1f33184!8m2!3d52.2862338!4d6.774405">Van der Valk Hotel Hengelo</a></td>
+                  <td>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="participateIranianCeremony" [(ngModel)]="model.participateIranianCeremony"  class="custom-control-input">
+                      <label class="participateCheckBox">Participate</label>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
+                  <td>18 PM - 19 PM</td>
+                  <td>Party</td>
+                  <td><a href="https://www.google.nl/maps/place/Van+der+Valk+Hotel+Hengelo/@52.2862338,6.7722163,17z/data=!3m1!4b1!4m5!3m4!1s0x47b80e30c44d8381:0x96702367c1f33184!8m2!3d52.2862338!4d6.774405">Van der Valk Hotel Hengelo</a></td>
+                  <td>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="participateParty" [(ngModel)]="model.participateParty"  class="custom-control-input">
+                      <label class="participateCheckBox">Participate</label>
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>
+        </fieldset>
+        <fieldset>
+          <legend>Optional</legend>
+          <label for="remarks" class="remarks">Remark</label>
+          <textarea [(ngModel)]="model.remarks" cols="50" rows="4" name="remarks" id="remarks"></textarea>
         </fieldset>
       </div>
      
@@ -160,22 +184,61 @@
     </form>
   </div>
 
-  <!-- <div [hidden]="!submitted">
+  <div [hidden]="!submitted">
     <h2>You submitted the following:</h2>
     <div class="row">
-      <div class="col-xs-3">Name</div>
-      <div class="col-xs-9  pull-left">{{ model.name }}</div>
+      <div *ngIf= "!model.participate">
+       <label>You will not participate</label> 
+      </div>
     </div>
-    <div class="row">
-      <div class="col-xs-3">Alter Ego</div>
-      <div class="col-xs-9 pull-left">{{ model.alterEgo }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Power</div>
-      <div class="col-xs-9 pull-left">{{ model.power }}</div>
-    </div>
+    <div *ngIf= "model.participate">
+        <label>We are happy that you will be participate</label>
+        <fieldset>
+          <legend>Contact info</legend>
+          <div class="row">
+            <label class="col-md-3">Name</label>
+            <div class="col-md-3">{{ model.name }}</div>
+            <label class="col-md-3">Phone number</label>
+            <div class="col-md-3">{{model.phoneNumber}}</div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Number of guests</legend>
+          <div class="row">
+            <label class="col-md-3">Number of adults</label>
+            <div class="col-md-3">{{ model.numberOfAdults }}</div>
+            <label class="col-md-3">Number of kids</label>
+            <div class="col-md-3">{{model.numberOfKids}}</div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Address</legend>
+          <div class="row">
+            <label class="col-md-3">City</label>
+            <div class="col-md-3">{{ model.addressCity }}</div>
+            <label class="col-md-3">Street</label>
+            <div class="col-md-3">{{model.addressStreet}}</div>
+          </div>
+          <div class="row">
+            <label class="col-md-3">Number</label>
+            <div class="col-md-3">{{ model.addressNumber }}</div>
+            <label class="col-md-3">Postalcode</label>
+            <div class="col-md-3">{{model.addressPostalCode}}</div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Program</legend>
+          <ul>
+            <li *ngIf="model.participateDutchCeremony"> <label>You will participate in Dutch cermony.</label></li>
+            <li *ngIf="model.participateIranianCeremony"><label>You will participate in Reception and Iranian cermony.</label></li>
+            <li *ngIf="model.participateParty"><label>You will participate in party.</label></li>
+          </ul>
+        </fieldset>
+      </div>
+
     <br>
     <button class="btn btn-primary" (click)="submitted=false">Edit</button>
-  </div> -->
+    <button class="btn btn-primary" (click)="sendInfo()">Confirm</button>
+  </div>
 </div>
 

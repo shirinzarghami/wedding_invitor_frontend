@@ -1,6 +1,6 @@
+import { WeddingInviterService } from './../wedding-inviter.service';
 import { Guest } from './../Guest';
 import { Component } from '@angular/core';
-
 
 @Component({
   selector: 'app-weddingInviter-form',
@@ -8,9 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./weddingInviter-form.component.css']
 })
 export class WeddingInviterFormComponent {
+  constructor(private weddingInviterService: WeddingInviterService){}
   submitted = false;
   model = new Guest("",true,1,0,'','','','','',true,true,true,'');
-  onSubmit() { this.submitted = true; debugger}
+  onSubmit() { this.submitted = true;}
+  sendInfo() {
+    this.weddingInviterService.saveForm(this.model);
+  }
 
 
 
